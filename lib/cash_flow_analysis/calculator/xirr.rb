@@ -11,7 +11,13 @@ module CashFlowAnalysis
 
         objective_function = Util::ObjectiveFunction.new(Xnpv, cash_flow_items)
         discount_rate_vector = [objective_function.one]
-        nlsolve(objective_function, discount_rate_vector)
+
+        begin
+          nlsolve(objective_function, discount_rate_vector)
+        rescue RuntimeError => ex
+          raise CalculationError.new(ex)
+        end
+
         discount_rate_vector.first
       end
     end
