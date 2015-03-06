@@ -1,5 +1,7 @@
 # CashFlowAnalysis
 
+[![Build Status](https://travis-ci.org/hightower/cash_flow_analysis.svg?branch=master)](https://travis-ci.org/hightower/cash_flow_analysis)
+
 Ruby implementation of various financial analysis functions.
 
 ## Installation
