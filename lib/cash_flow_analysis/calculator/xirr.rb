@@ -5,6 +5,10 @@ module CashFlowAnalysis
     module Xirr
       extend Newton
 
+      # Calculates the {http://en.wikipedia.org/wiki/Internal_rate_of_return XIRR}, assuming irregularly timed cash flows.
+      #
+      # @param cash_flow_items [Array] items which have `#date` ([Date]) and `#amount` ([Numeric]) properties
+      # @return [Numeric] the XIRR for the cash flow
       def self.calculate(cash_flow_items)
         return nil if cash_flow_items.map(&:amount).none? { |amount| amount >= 0 }
         return nil if cash_flow_items.map(&:amount).none? { |amount| amount < 0 }

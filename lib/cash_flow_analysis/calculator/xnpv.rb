@@ -1,6 +1,11 @@
 module CashFlowAnalysis
   module Calculator
     module Xnpv
+      # Calculates the {http://en.wikipedia.org/wiki/Net_present_value XNPV}, assuming irregularly timed cash flows.
+      #
+      # @param discount_rate [Numeric] the discount rate for the calculation
+      # @param cash_flow_items [Array] items which have `#date` ([Date]) and `#amount` ([Numeric]) properties
+      # @return [Numeric] the XNPV for the cash flow
       def self.calculate(discount_rate, cash_flow_items)
         start_date = cash_flow_items.first.date
 

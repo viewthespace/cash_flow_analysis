@@ -20,7 +20,55 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+The gem provides four calculators, CAGR, Payment, XIRR, and XNPV.
+
+### CAGR
+
+Calculates the [CAGR](http://en.wikipedia.org/wiki/Compound_annual_growth_rate) based on a start value, end value, and a term.
+
+```
+CashFlowAnalysis::Calculator::Cagr.calculate(25.5, 35.5, 5)
+# 0.06840923807777366
+```
+
+### Payment
+
+Calculates the [payment for a loan](http://en.wikipedia.org/wiki/Mortgage_calculator), assuming fixed payments and rates.
+
+```
+CashFlowAnalysis::Calculator::Payment.calculate(10000, 60, 0.025)
+# 323.5339590005929
+```
+
+### XIRR
+
+Calculates the [XIRR](http://en.wikipedia.org/wiki/Internal_rate_of_return), assuming irregularly timed cash flows.
+
+```
+items = []
+items << OpenStruct.new(date: Date.new(2008, 1, 1), amount: -10000)
+items << OpenStruct.new(date: Date.new(2008, 3, 1), amount: 2750)
+items << OpenStruct.new(date: Date.new(2008, 10, 30), amount: 4250)
+items << OpenStruct.new(date: Date.new(2009, 2, 15), amount: 3250)
+items << OpenStruct.new(date: Date.new(2009, 4, 1), amount: 2750)
+CashFlowAnalysis::Calculator::Xirr.calculate(items)
+# 0.373362533517793504136316860945228...
+```
+
+### XNPV
+
+Calculates the [XNPV](http://en.wikipedia.org/wiki/Net_present_value), assuming irregularly timed cash flows.
+
+```
+items = []
+items << OpenStruct.new(date: Date.new(2008, 1, 1), amount: -10000)
+items << OpenStruct.new(date: Date.new(2008, 3, 1), amount: 2750)
+items << OpenStruct.new(date: Date.new(2008, 10, 30), amount: 4250)
+items << OpenStruct.new(date: Date.new(2009, 2, 15), amount: 3250)
+items << OpenStruct.new(date: Date.new(2009, 4, 1), amount: 2750)
+CashFlowAnalysis::Calculator::Xnpv.calculate(0.09, items)
+# 2086.647602031535
+```
 
 ## Development
 
